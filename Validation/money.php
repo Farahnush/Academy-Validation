@@ -39,9 +39,8 @@ function checkDateType($order)
 }
 
 //Определяем находится ли приказ среди уже существующей команды
-$default_order =[$order];
-echo "<br/>";
-if (in_array('Вперед',$default_order)){
+
+if (in_array('Вперед',$order)){
     echo "This order exist";
 } else{
     echo "This order not exist";
