@@ -39,15 +39,26 @@ function checkDateType($order)
 }
 
 //Определяем находится ли приказ среди уже существующей команды
+function validateInArray($order, $order_array){
+    if (in_array($order,$order_array)){
+        echo "This order exist";
+    } else {
+        echo "This order not exist";
+    }
+}
 
-if (in_array('Вперед',$order)){
-    echo "This order exist";
-} else{
-    echo "This order not exist";
+function order($order){
+    $validation_message = validateMin($order, 6) . "<br>";
+    $validation_message .= validateMax($order,12) . "<br>";
+    $validation_message .= checkDateType($order) . "<br>";
+    $order_array =[
+            'Вперед',
+            'Тонем',
+            'Обед'
+    ];
+    $validation_message .= validateInArray($order,$order_array). "<br>";
+    return $validation_message;
 }
 $order = readline("Give your order, captain!");
-
-echo validateMin($order,6) . "<br>";
-echo validateMax($order,12) . "<br>";
-echo checkDateType($order) . "<br>";
+echo order($order);
 
