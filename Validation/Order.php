@@ -6,11 +6,6 @@
 <!--Проверить типы данных, длина команды минимум и максимум, находится для в наборе уже существующих команд
 (создаете отдельный массив команд)-->
 <?php
-//$order = [
-//        'Вперед',
-//        'На абордаж',
-//        'Рифы'
-//];
 
 function validateMin ($order, $min_value)
 {
@@ -30,7 +25,7 @@ function validateMax ($order, $max_value)
 }
 
 //Валидация на типы данных в приказе
-function checkDateType($order)
+function validateString($order)
 {
     if (is_string($order)) {
         return "Type of order is string";
@@ -47,18 +42,29 @@ function validateInArray($order, $order_array){
     }
 }
 
-function order($order){
-    $validation_message = validateMin($order, 6) . "<br>";
-    $validation_message .= validateMax($order,12) . "<br>";
-    $validation_message .= checkDateType($order) . "<br>";
-    $order_array =[
-            'Вперед',
-            'Тонем',
-            'Обедим'
+function validate ($order){
+    $order_array=[
+        "Вперед",
+        "На абордаж",
+        "Чужак"
     ];
-    $validation_message .= validateInArray($order,$order_array). "<br>";
-    return $validation_message;
+    $rules = 'string|min:4|max:12|inArray';
+    $arr_rules = explode("|", $rules);
+    $messages = [];
+
+    foreach ($arr_rules as $rule) {
+        if ($rule == 'string')
+            print validateString($order);
+        if ($rule == 'min')
+           print validateMin($order,4);
+        if ($rule == 'max')
+            print validateMax($order,12);
+        if ($rule == $order_array)
+           print validateInArray($order,$order_array) . "<br>";
+    }
+    return $messages;
 }
+
 $order = readline("Give your order, captain!");
-echo order($order);
+print_r(validate($order));
 
