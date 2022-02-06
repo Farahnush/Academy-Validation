@@ -48,7 +48,7 @@ function validate ($order){
         "На абордаж",
         "Чужак"
     ];
-    $rules = 'string|min:4|max:12|inArray';
+    $rules = 'string|min|max|inArray';
     $arr_rules = explode("|", $rules);
     $messages = [];
 
