@@ -54,12 +54,12 @@ function validate ($order){
 
     foreach ($arr_rules as $rule) {
         if ($rule == 'string')
-            print validateString($order);
+            print validateString($order). "<br>";
         if ($rule == 'min')
-           print validateMin($order,4);
+           print validateMin($order,4). "<br>";
         if ($rule == 'max')
-            print validateMax($order,12);
-        if ($rule == $order_array)
+            print validateMax($order,12). "<br>";
+        if ($rule == 'inArray')
            print validateInArray($order,$order_array) . "<br>";
     }
     return $messages;
